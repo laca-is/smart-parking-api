@@ -1,15 +1,12 @@
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 const docClient = new DynamoDB.DocumentClient({ region: 'us-east-1' });
 const dynamo = new DynamoDB({ region: 'us-east-1' });
-const { v4 } = require('uuid');
 
 const insertIntoTable = async (table, args) => {
 	try {
 		const params = {
 			TableName: table,
 			Item: {
-				uuid: v4(),
-				timestamp: Date.now(),
 				...args,
 			},
 		};
