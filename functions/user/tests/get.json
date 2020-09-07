@@ -1,0 +1,6 @@
+{
+	"field": "getUser",
+	"arguments": {
+		"cpf": "063.820.049-01"
+	}
+}
