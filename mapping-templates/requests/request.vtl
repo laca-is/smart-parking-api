@@ -1,0 +1,12 @@
+#set( $event = {})
+#set( $arguments = {})
+$util.qr( $event.put("field", $context.info.fieldName) )
+#foreach ($key in $context.args.keySet())
+	$util.qr( $arguments.put($key, $context.args.get($key)) )
+#end
+$util.qr( $event.put("arguments",  $arguments) )
+{
+	"version" : "2018-05-29",
+	"operation": "Invoke",
+    "payload": $util.toJson( $event )
+}

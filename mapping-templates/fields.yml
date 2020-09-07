@@ -1,0 +1,17 @@
+- type: Query
+  dataSource: user
+  field: getUser
+  request: requests/request.vtl
+  response: responses/response.vtl
+
+- type: Mutation
+  dataSource: user
+  field: insertUser
+  request: requests/request.vtl
+  response: responses/response.vtl
+
+- type: Mutation
+  dataSource: user
+  field: insertVehicle
+  request: requests/request.vtl
+  response: responses/response.vtl

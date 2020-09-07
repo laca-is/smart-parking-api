@@ -1,0 +1,47 @@
+schema {
+	query: Query
+	mutation: Mutation
+	#   subscription: Subscription
+}
+
+# START TYPES
+
+type Veihicles {
+	plate: String!
+}
+
+type User {
+	firstName: String!
+	lastName: String!
+	cpf: String!
+	veihicles: [Veihicles]
+}
+
+type Query {
+	getUser(cpf: String): User
+}
+
+type Mutation {
+	insertUser(input: UserInput): Boolean!
+	insertVehicle(input: VeihiclesInput): Boolean!
+}
+
+# END TYPES
+
+# type Subscription {
+#   onNewSchedule(clinicId: ID!): Schedule
+# }
+
+# START INPUTS
+
+input VeihiclesInput {
+	plate: String!
+}
+
+input UserInput {
+	firstName: String!
+	lastName: String!
+	cpf: String!
+}
+
+# END INPUTS
