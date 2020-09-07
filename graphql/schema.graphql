@@ -18,12 +18,13 @@ type User {
 }
 
 type Query {
-	getUser(cpf: String): User
+	getUser(cpf: String!): User
 }
 
 type Mutation {
 	insertUser(input: UserInput): Boolean!
 	insertVehicle(input: VeihiclesInput): Boolean!
+	insertParkingSpots(input: ParkingSpotsInput): Boolean!
 }
 
 # END TYPES
@@ -42,6 +43,11 @@ input UserInput {
 	firstName: String!
 	lastName: String!
 	cpf: String!
+}
+
+input ParkingSpotsInput {
+	sector: String!
+	nSpots: Int!
 }
 
 # END INPUTS

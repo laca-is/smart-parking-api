@@ -8,3 +8,14 @@ user:
     environment:
         APP: ${self:app}
         STAGE: ${self:custom.stage}
+
+parking:
+    name: ${self:app}-parking-${self:custom.stage}
+    handler: functions/parking/main.handler
+    package:
+        include:
+            - functions/parking/*
+            - functions/parking/*/**
+    environment:
+        APP: ${self:app}
+        STAGE: ${self:custom.stage}

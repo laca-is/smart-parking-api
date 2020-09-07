@@ -1,0 +1,9 @@
+{
+	"field": "insertParkingSpots",
+	"arguments": {
+		"input": {
+			"sector": "B",
+			"nSpots": 10
+		}
+	}
+}
