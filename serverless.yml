@@ -1,0 +1,49 @@
+app: sp
+service: smart-parking
+provider:
+    name: aws
+    runtime: nodejs12.x
+    profile: smart-parking
+    memorySize: 128
+    versionFunctions: false
+    iamRoleStatements:
+        - Effect: Allow
+          Action: dynamodb:Query
+          Resource:
+              - '*'
+        - Effect: Allow
+          Action: dynamodb:PutItem
+          Resource:
+              - '*'
+
+plugins:
+    - serverless-appsync-plugin
+    - serverless-jetpack
+
+package:
+    individually: true
+    include:
+        - '!*'
+        - '!*/**'
+
+functions:
+    - ${file(functions/serverless.yml)}
+
+custom:
+    stage: ${opt:stage, self:provider.stage}
+    appSync:
+        name: ${self:app}-api-${self:custom.stage}
+        schema: ./graphql/schema.graphql
+        authenticationType: API_KEY
+        mappingTemplates:
+            - ${file(mapping-templates/fields.yml)}
+        dataSources:
+            - ${file(data-sources.yml)}
+    jetpack:
+        concurrency: 3
+
+resources:
+    - Conditions:
+          isProd: !Equals ['${self:custom.stage}', prod]
+
+    - ${file(resources/dynamodb.yml)}

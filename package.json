@@ -1,0 +1,16 @@
+{
+	"name": "serverless",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv-load": "^2.0.0",
+		"serverless-appsync-plugin": "^1.4.0",
+		"serverless-jetpack": "^0.10.7"
+	},
+	"scripts": {
+		"sls": "dotenv-load sls deploy -v",
+		"test": "node scripts/test.js",
+		"deploy": "node scripts/deploy.js"
+	}
+}
