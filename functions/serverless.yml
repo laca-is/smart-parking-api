@@ -1,0 +1,10 @@
+user:
+    name: ${self:app}-user-${self:custom.stage}
+    handler: functions/user/main.handler
+    package:
+        include:
+            - functions/user/*
+            - functions/user/*/**
+    environment:
+        APP: ${self:app}
+        STAGE: ${self:custom.stage}
