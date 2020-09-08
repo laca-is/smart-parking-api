@@ -3,18 +3,18 @@ Resources:
         Type: AWS::DynamoDB::Table
         Properties:
             AttributeDefinitions:
-                - AttributeName: cpf
+                - AttributeName: driverId
                   AttributeType: S
             BillingMode: PAY_PER_REQUEST
             GlobalSecondaryIndexes:
-                - IndexName: cpfIndex
+                - IndexName: driverIdIndex
                   KeySchema:
-                      - AttributeName: cpf
+                      - AttributeName: driverId
                         KeyType: HASH
                   Projection:
                       ProjectionType: ALL
             KeySchema:
-                - AttributeName: cpf
+                - AttributeName: driverId
                   KeyType: HASH
             TableName: ${self:app}-user-${self:custom.stage}
     Parking:
@@ -23,11 +23,13 @@ Resources:
             AttributeDefinitions:
                 - AttributeName: spot
                   AttributeType: S
+                - AttributeName: status
+                  AttributeType: S
             BillingMode: PAY_PER_REQUEST
             GlobalSecondaryIndexes:
-                - IndexName: spotIndex
+                - IndexName: statusIndex
                   KeySchema:
-                      - AttributeName: spot
+                      - AttributeName: status
                         KeyType: HASH
                   Projection:
                       ProjectionType: ALL
@@ -35,3 +37,39 @@ Resources:
                 - AttributeName: spot
                   KeyType: HASH
             TableName: ${self:app}-parking-${self:custom.stage}
+    ParkingHistory:
+        Type: AWS::DynamoDB::Table
+        Properties:
+            AttributeDefinitions:
+                - AttributeName: uuid
+                  AttributeType: S
+                - AttributeName: spot
+                  AttributeType: S
+                - AttributeName: driverId
+                  AttributeType: S
+                - AttributeName: timestamp
+                  AttributeType: N
+            BillingMode: PAY_PER_REQUEST
+            GlobalSecondaryIndexes:
+                - IndexName: driverIdIndex
+                  KeySchema:
+                      - AttributeName: driverId
+                        KeyType: HASH
+                      - AttributeName: timestamp
+                        KeyType: RANGE
+                  Projection:
+                      ProjectionType: ALL
+                - IndexName: spotIndex
+                  KeySchema:
+                      - AttributeName: spot
+                        KeyType: HASH
+                      - AttributeName: timestamp
+                        KeyType: RANGE
+                  Projection:
+                      ProjectionType: ALL
+            KeySchema:
+                - AttributeName: uuid
+                  KeyType: HASH
+                - AttributeName: timestamp
+                  KeyType: RANGE
+            TableName: ${self:app}-parking-history-${self:custom.stage}
