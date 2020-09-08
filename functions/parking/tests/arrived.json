@@ -1,0 +1,13 @@
+{
+	"field": "carArrived",
+	"arguments": {
+		"input": {
+			"spot": "A1",
+			"driverId": "063.820.049-01",
+			"startTime": "14:00",
+			"endTime": "18:00",
+			"date": "2020-09-07",
+			"price": 10
+		}
+	}
+}

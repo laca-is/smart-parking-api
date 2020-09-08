@@ -21,3 +21,33 @@
   field: insertParkingSpots
   request: requests/request.vtl
   response: responses/response.vtl
+
+- type: Mutation
+  dataSource: parking
+  field: requestSpot
+  request: requests/request.vtl
+  response: responses/response.vtl
+
+- type: Mutation
+  dataSource: parking
+  field: requestSuccess
+  request: requests/request.vtl
+  response: responses/response.vtl
+
+- type: Mutation
+  dataSource: parking
+  field: requestFailed
+  request: requests/request.vtl
+  response: responses/response.vtl
+
+- type: Mutation
+  dataSource: parking
+  field: carArrived
+  request: requests/request.vtl
+  response: responses/response.vtl
+
+- type: Mutation
+  dataSource: parking
+  field: carLeft
+  request: requests/request.vtl
+  response: responses/response.vtl

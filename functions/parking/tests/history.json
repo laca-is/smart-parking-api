@@ -1,0 +1,9 @@
+{
+	"field": "getHistory",
+	"arguments": {
+		"filter": {
+			"driverId": "063.820.049-01",
+			"spot": null
+		}
+	}
+}

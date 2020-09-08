@@ -1,0 +1,6 @@
+{
+	"field": "getSpotsByStatus",
+	"arguments": {
+		"status": "FREE"
+	}
+}

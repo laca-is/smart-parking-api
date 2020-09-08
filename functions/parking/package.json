@@ -2,5 +2,8 @@
   "name": "parking",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^8.3.0"
+  }
 }
