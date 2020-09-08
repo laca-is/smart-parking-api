@@ -1,0 +1,9 @@
+{
+	"field": "insertVehicle",
+	"arguments": {
+		"input": {
+			"plates": ["AZU8E51"],
+			"driverId": "063.820.049-01"
+		}
+	}
+}

@@ -1,6 +1,6 @@
 {
 	"field": "getUser",
 	"arguments": {
-		"cpf": "063.820.049-01"
+		"driverId": "063.820.049-01"
 	}
 }
