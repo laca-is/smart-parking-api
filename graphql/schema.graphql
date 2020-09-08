@@ -6,48 +6,93 @@ schema {
 
 # START TYPES
 
-type Veihicles {
-	plate: String!
+type Spot {
+	spot: String!
+	status: String!
+	driverId: String
+	veihicle: String
+	startTime: String
+	endTime: String
+	date: String
+	price: Float
+}
+
+type History {
+	timestamp: AWSTimestamp!
+	driverId: String!
+	spot: String!
+	price: Float!
 }
 
 type User {
 	firstName: String!
 	lastName: String!
-	cpf: String!
-	veihicles: [Veihicles]
+	driverId: String!
+	veihicles: [String]
 }
 
 type Query {
-	getUser(cpf: String!): User
+	getUser(driverId: String!): User
+	getSpotsByStatus(status: String!): Spot
+	getHistory(filter: HistoryInput!): History
 }
 
 type Mutation {
 	insertUser(input: UserInput): Boolean!
 	insertVehicle(input: VeihiclesInput): Boolean!
 	insertParkingSpots(input: ParkingSpotsInput): Boolean!
+	requestSpot(input: RequestSpotInput): Spot
+	requestSuccess(input: RequestSpotInput): Spot
+	requestFailed(input: ClearSpotInput): Spot
+	carArrived(input: RequestSpotInput): Spot
+	carLeft(input: ClearSpotInput): Spot
+}
+
+type Subscription {
+	onRequestSpot: Spot @aws_subscribe(mutations: ["requestSpot"])
+	onRequestSuccess: Spot @aws_subscribe(mutations: ["requestSuccess"])
+	onRequestFailed: Spot @aws_subscribe(mutations: ["requestFailed"])
+	onCarArrived: Spot @aws_subscribe(mutations: ["carArrived"])
+	onCarLeft: Spot @aws_subscribe(mutations: ["carLeft"])
 }
 
 # END TYPES
 
-# type Subscription {
-#   onNewSchedule(clinicId: ID!): Schedule
-# }
-
 # START INPUTS
 
+input HistoryInput {
+	driverId: String
+	spot: String
+}
+
 input VeihiclesInput {
-	plate: String!
+	driverId: String!
+	plates: [String]!
 }
 
 input UserInput {
 	firstName: String!
 	lastName: String!
-	cpf: String!
+	driverId: String!
 }
 
 input ParkingSpotsInput {
 	sector: String!
 	nSpots: Int!
+}
+
+input RequestSpotInput {
+	spot: String!
+	driverId: String!
+	veihicle: String!
+	startTime: String!
+	endTime: String!
+	date: String!
+	price: Float!
+}
+
+input ClearSpotInput {
+	spot: String!
 }
 
 # END INPUTS
